@@ -1,0 +1,38 @@
+{
+  "name": "BLE Development",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "args": {
+      "DEBIAN_FRONTEND": "noninteractive"
+    }
+  },
+  "runArgs": [
+    "--privileged",
+    "--net=host"
+  ],
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.shell.linux": "/bin/bash",
+        "cmake.configureOnOpen": true
+      },
+      "extensions": [
+        "ms-vscode.cpptools",
+        "ms-vscode.cmake-tools",
+        "twxs.cmake"
+      ]
+    }
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": true,
+      "username": "vscode",
+      "userUid": "1000",
+      "userGid": "1000"
+    }
+  },
+  "forwardPorts": [],
+  "mounts": [],
+  "postCreateCommand": "mkdir -p build && cmake -S . -B build",
+  "remoteUser": "vscode"
+}
